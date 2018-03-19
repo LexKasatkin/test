@@ -1,8 +1,8 @@
-public class ArraySel {
+public class ArrayBub {
     private long[]a;
     private int nElems;
 
-    public ArraySel(int max){
+    public ArrayBub(int max){
         a=new long[max];
         nElems=0;
     }
@@ -21,16 +21,23 @@ public class ArraySel {
         System.out.println();
     }
 
-    public void selectionSort()
+    public void bublSort()
     {
-        int out, in, min;
-        for (out=0;out<nElems-1;out++){
-            min=out;
-            for(in=out+1;in<nElems;in++)
-                if(a[in]<a[min])
-                min=in;
-            swap(out,min);
-        }
+       int out,in, outLeft;
+       for(out=nElems-1;out>1;out--)
+       {
+           outLeft=nElems-1-out;
+           for(in=0; in<out;in++)
+           {
+               if(a[in]>a[in+1])
+                   swap(in, in+1);
+           }
+           for(in=outLeft; in>1;in--)
+           {
+               if(a[in]>a[in+1])
+                   swap(in, in+1);
+           }
+       }
     }
 
     private void swap(int one, int two)
@@ -43,13 +50,13 @@ public class ArraySel {
 
 
 
-class SelectSortApp
+class BubbleSortApp
 {
     public static void main(String[]args)
     {
         int maxSize=100;
-        ArraySel arr;
-        arr=new ArraySel(maxSize);
+        ArrayBub arr;
+        arr=new ArrayBub(maxSize);
         arr.insert(66);
         arr.insert(33);
         arr.insert(66);
@@ -60,7 +67,7 @@ class SelectSortApp
         arr.insert(77);
 
         arr.display();
-        arr.selectionSort();
+        arr.bublSort();
         arr.display();
     }
 }
