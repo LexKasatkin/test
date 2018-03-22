@@ -71,3 +71,151 @@ class BubbleSortApp
         arr.display();
     }
 }
+
+class ArrayIns {
+    private long[]a;
+    private int nElems;
+
+    public ArrayIns(int max){
+        a=new long[max];
+        nElems=0;
+    }
+
+    public void insert(long value)
+    {
+        a[nElems]=value;
+        nElems++;
+    }
+
+    public void display()
+    {
+        for (int j=0; j<nElems; j++){
+            System.out.print(a[j]+" ");
+        }
+        System.out.println();
+    }
+
+    public void insertionSort()
+    {
+        int out,in;
+        for(out=1;out<nElems;out++)
+        {
+            long temp=a[out];
+            in=out;
+            while(in>0&&a[in=1]>=temp)
+            {
+                a[in]=a[in-1];
+                --in;
+            }
+            a[in]=temp;
+        }
+    }
+}
+
+class InsertSortApp
+{
+    public static void main(String[]args)
+    {
+        int maxSize=100;
+        ArrayIns arr;
+        arr=new ArrayIns(maxSize);
+        arr.insert(66);
+        arr.insert(33);
+        arr.insert(66);
+        arr.insert(99);
+        arr.insert(11);
+        arr.insert(22);
+        arr.insert(33);
+        arr.insert(77);
+
+        arr.display();
+        arr.insertionSort();
+        arr.display();
+    }
+}
+
+
+class ArraySel {
+    private long[]a;
+    private int nElems;
+
+    public ArraySel(int max){
+        a=new long[max];
+        nElems=0;
+    }
+
+    public void insert(long value)
+    {
+        a[nElems]=value;
+        nElems++;
+    }
+
+    public void display()
+    {
+        for (int j=0; j<nElems; j++){
+            System.out.print(a[j]+" ");
+        }
+        System.out.println();
+    }
+
+    public void selectionSort()
+    {
+        int out,in, min;
+        for(out=0;out<nElems-1;out++)
+        {
+           min=out;
+           for(in=out+1;in<nElems; in++)
+               if(a[in]<a[min])
+                   min=in;
+           swap(out,min);
+        }
+    }
+
+    private void swap(int one, int two)
+    {
+        long temp=a[one];
+        a[one]=a[two];
+        a[two]=temp;
+    }
+
+    public long median()
+    {
+        long sum=0, sumMed=0;
+        for(int j=0; j<nElems;j++)
+            sum+=a[j];
+        for(int j=0; j<nElems;j++)
+        {
+            sumMed+=a[j];
+            if(sumMed>=sum/2)
+                return a[j-1];
+        }
+        System.out.println(sum);
+        return -1;
+    }
+}
+
+class SelectSortApp
+{
+    public static void main(String[]args)
+    {
+        int maxSize=100;
+        ArraySel arr;
+        arr=new ArraySel(maxSize);
+        arr.insert(14);
+        arr.insert(33);
+        arr.insert(45);
+        arr.insert(17);
+        arr.insert(11);
+        arr.insert(22);
+        arr.insert(44);
+        arr.insert(11);
+
+        arr.display();
+        arr.selectionSort();
+        arr.display();
+
+        long sum=arr.median();
+        System.out.println(sum);
+
+    }
+}
