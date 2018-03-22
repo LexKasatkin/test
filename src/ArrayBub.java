@@ -192,6 +192,20 @@ class ArraySel {
         System.out.println(sum);
         return -1;
     }
+
+    public void noDups()
+    {
+        for(int i=1;i<nElems;i++)
+        {
+            if(a[i]==a[i-1]||a[i-1]==0) {
+                a[i - 1] = a[i];
+                a[i]=0;
+            }
+//            if(a[i]==0)
+//                nElems--;
+
+        }
+    }
 }
 
 class SelectSortApp
@@ -208,12 +222,16 @@ class SelectSortApp
         arr.insert(11);
         arr.insert(22);
         arr.insert(44);
+        arr.insert(44);
+        arr.insert(44);
+        arr.insert(44);
         arr.insert(11);
 
         arr.display();
         arr.selectionSort();
         arr.display();
-
+        arr.noDups();
+        arr.display();
         long sum=arr.median();
         System.out.println(sum);
 
