@@ -46,6 +46,23 @@ public class ArrayBub {
         a[one]=a[two];
         a[two]=temp;
     }
+
+
+    public void oddEvenSort()
+    {
+        int out,in;
+
+
+        for(out=nElems-1;out>1;out-- )
+            for(in=1;in<out;in=in+2)
+                if(a[in]>a[in+1])
+                    swap(in, in+1);
+
+        for(out=nElems-1;out>1;out-- )
+            for(in=0;in<out;in=in+2)
+                if(a[in]>a[in+1])
+                    swap(in, in+1);
+    }
 }
 
 
@@ -67,7 +84,7 @@ class BubbleSortApp
         arr.insert(77);
 
         arr.display();
-        arr.bublSort();
+        arr.oddEvenSort();
         arr.display();
     }
 }
@@ -102,13 +119,36 @@ class ArrayIns {
         {
             long temp=a[out];
             in=out;
-            while(in>0&&a[in=1]>=temp)
+            while(in>0&&a[in-1]>=temp)
             {
                 a[in]=a[in-1];
                 --in;
             }
             a[in]=temp;
         }
+    }
+
+    public void noDups()
+    {
+        int k=0;
+        long curvalue=0L;
+        for(int i=1;i<nElems;i++)
+        {
+            if(a[i]==a[i-1]||a[i-1]==0) {
+                if(k==0){
+                    k=i;
+                    curvalue=a[k];
+                }else if(curvalue!=a[i]){
+                    a[k] = a[i];
+                    curvalue=a[k];
+                    k++;
+                }
+                a[i]=0;
+            }
+
+        }
+        nElems=k;
+
     }
 }
 
@@ -125,11 +165,24 @@ class InsertSortApp
         arr.insert(99);
         arr.insert(11);
         arr.insert(22);
+        arr.insert(22);
+        arr.insert(22);
+        arr.insert(22);
+        arr.insert(22);
+        arr.insert(22);
+        arr.insert(22);
+        arr.insert(22);
         arr.insert(33);
         arr.insert(77);
-
+        arr.insert(77);
+        arr.insert(77);
+        arr.insert(77);
+        arr.insert(77);
+        arr.insert(77);
         arr.display();
         arr.insertionSort();
+        arr.display();
+        arr.noDups();
         arr.display();
     }
 }
@@ -193,19 +246,6 @@ class ArraySel {
         return -1;
     }
 
-    public void noDups()
-    {
-        for(int i=1;i<nElems;i++)
-        {
-            if(a[i]==a[i-1]||a[i-1]==0) {
-                a[i - 1] = a[i];
-                a[i]=0;
-            }
-//            if(a[i]==0)
-//                nElems--;
-
-        }
-    }
 }
 
 class SelectSortApp
@@ -230,7 +270,6 @@ class SelectSortApp
         arr.display();
         arr.selectionSort();
         arr.display();
-        arr.noDups();
         arr.display();
         long sum=arr.median();
         System.out.println(sum);
