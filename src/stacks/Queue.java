@@ -44,6 +44,22 @@ public class Queue {
         else
             return (maxSize-front)+(rear+1);
     }
+
+    public void displayQueue(){
+        if(rear>front)
+            for(int i=front;i<rear+1;i++)
+                System.out.print(queArray[i]+" ");
+        else {
+            for (int i = front; i < maxSize - 1; i++) {
+                System.out.print(queArray[i] + " ");
+            }
+            for (int i = 0; i < rear + 1; i++) {
+                System.out.print(queArray[i] + " ");
+            }
+        }
+
+        System.out.println();
+    }
 }
 
 class QueueApp{
@@ -55,10 +71,19 @@ class QueueApp{
         theQueue.insert(30);
         theQueue.insert(40);
         theQueue.insert(50);
-
-
         theQueue.remove();
         theQueue.remove();
+        theQueue.insert(60);
+        theQueue.insert(70);
+
+        theQueue.insert(80);
+
+        theQueue.displayQueue();
+        theQueue.remove();
+        theQueue.remove();
+        theQueue.insert(90);
+
+        theQueue.displayQueue();
 
         while(!theQueue.isEmpty())
         {
