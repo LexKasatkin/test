@@ -34,8 +34,8 @@ public class Deque {
 
     public long removeRight(){
         long temp=queArray[rear--];
-        if(front==maxSize)
-            front=0;
+        if(rear==0)
+            rear=maxSize;
         return temp;
     }
 
@@ -74,3 +74,36 @@ public class Deque {
         System.out.println();
     }
 }
+
+class DequeApp {
+
+    public static void main(String[] args) {
+        Deque theDeque = new Deque(5);
+        theDeque.insertRight(10);
+        theDeque.insertRight(20);
+        theDeque.insertLeft(30);
+        theDeque.insertLeft(40);
+        theDeque.insertRight(50);
+        theDeque.removeRight();
+        theDeque.removeLeft();
+//        theDeque.insert(60);
+//        theDeque.insert(70);
+//
+//        theDeque.insert(80);
+
+        theDeque.displayDeque();
+        theDeque.removeLeft();
+        theDeque.removeLeft();
+        theDeque.insertLeft(90);
+
+        theDeque.displayDeque();
+
+        while (!theDeque.isEmpty()) {
+            long n = theDeque.removeLeft();
+            System.out.print(n);
+            System.out.print(" ");
+        }
+        System.out.println();
+    }
+}
+
