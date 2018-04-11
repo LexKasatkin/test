@@ -11,7 +11,7 @@ public class FontTest {
     public static void main(String [] args){
         EventQueue.invokeLater(()->
                 {
-                    JFrame jFrame=new PlafFrame();
+                    JFrame jFrame=new ButtonFrame();
                     jFrame.setTitle("PlafFrame");
                     jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     jFrame.setVisible(true);
@@ -109,38 +109,41 @@ class ImageFrame extends JFrame{
         private static final int DEFALUT_HEIGHT = 200;
         public ButtonFrame(){
             setSize(DEFAULT_WIDTH, DEFALUT_HEIGHT);
-            JButton yellowButton=new JButton("Yellow");
-            JButton blueButton =new JButton("Blue");
-            JButton redButton=new JButton("Red");
+
 
             buttonPanel1=new JPanel();
-            buttonPanel1.add(yellowButton);
-            buttonPanel1.add(blueButton);
-            buttonPanel1.add(redButton);
+
 
             add(buttonPanel1);
 
-            ColorAction yellowAction=new ColorAction(Color.YELLOW);
-            ColorAction blueAction=new ColorAction(Color.BLUE);
-            ColorAction redAction=new ColorAction(Color.RED);
+            ColorAction yellowAction=new ColorAction("yellow", new ImageIcon("dkfjslf"),Color.YELLOW);
+            ColorAction blueAction=new ColorAction("blue", new ImageIcon("dkfjslf"),Color.BLUE);
+            ColorAction redAction=new ColorAction("red", new ImageIcon("dkfjslf"),Color.RED);
 
-            yellowButton.addActionListener(yellowAction);
-            blueButton.addActionListener(blueAction);
-            redButton.addActionListener(redAction);
+            JButton yellowButton=new JButton(yellowAction);
+            JButton blueButton =new JButton(blueAction);
+            JButton redButton=new JButton(redAction);
+            buttonPanel1.add(yellowButton);
+            buttonPanel1.add(blueButton);
+            buttonPanel1.add(redButton);
+//            yellowButton.addActionListener(yellowAction);
+//            blueButton.addActionListener(blueAction);
+//            redButton.addActionListener(redAction);
 
 
         }
 
-        private class ColorAction implements ActionListener{
-            private Color backgroundColor;
-
-            public ColorAction(Color c) {
-                backgroundColor=c;
-
+        private class ColorAction extends AbstractAction{
+            public ColorAction(String name,Icon icon, Color c) {
+                putValue(Action.NAME, name);
+                putValue(Action.SMALL_ICON, icon);
+                putValue("color", c);
+                putValue(Action.SHORT_DESCRIPTION, "Set panel color to " + name.toLowerCase());
             }
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                buttonPanel1.setBackground(backgroundColor);
+                Color c=(Color) getValue("color");
+                buttonPanel1.setBackground(c);
             }
         }
 }
