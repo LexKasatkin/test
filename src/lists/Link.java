@@ -30,9 +30,9 @@ class LinkList
     {
         return(first==null);
     }
-
-    public void insertFirst(int dd, double dd)
-    {
-        
-    }
+//
+//    public void insertFirst(int dd, double dd)
+//    {
+//
+//    }
 }
