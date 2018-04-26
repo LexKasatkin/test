@@ -11,7 +11,7 @@ public class CicleList {
     public void add(int id, long data){
         CicleLink newCicleLink=new CicleLink(id,data,current.next);
         current.next=newCicleLink;
-        current=newCicleLink;
+//        current=newCicleLink;
     }
 
     public CicleLink step(){
