@@ -8,10 +8,19 @@ public class CicleList {
         current.next=current;
     }
 
+    public CicleList() {
+        current=null;
+    }
+
     public void add(int id, long data){
-        CicleLink newCicleLink=new CicleLink(id,data,current.next);
-        current.next=newCicleLink;
-//        current=newCicleLink;
+        if(current==null) {
+            current = new CicleLink(id,data);
+            current.next=current;
+        }
+        else {
+            CicleLink newCicleLink=new CicleLink(id,data,current.next);
+            current.next = newCicleLink;
+        }
     }
 
     public CicleLink step(){
@@ -28,8 +37,8 @@ public class CicleList {
         System.out.println();
     }
 
-    public CicleLink delete(){
-        CicleLink deletElem=current.next.next;
+    public long delete(){
+        long deletElem=current.next.data;
         current.next=current.next.next;
         return deletElem;
     }
@@ -85,7 +94,6 @@ class MainCycleList{
         cicleList.delete();
         cicleList.add(4,105);
         cicleList.displayList();
-//        cicleList.step();
         cicleList.add(5,4);
         cicleList.add(6,4);
         cicleList.search(new CicleLink(6,4));
